@@ -1,4 +1,5 @@
 FROM ubuntu:16.04
+MAINTAINER Vlad Belous
 
 ENV GITLAB_CI_MULTI_RUNNER_VERSION=1.1.4 \
     GITLAB_CI_MULTI_RUNNER_USER=gitlab_ci_multi_runner \
