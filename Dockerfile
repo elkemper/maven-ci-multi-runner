@@ -24,7 +24,8 @@ RUN apt-get update \
  && apt-get upgrade -y \ 
  && apt-get install openjdk-8-jdk maven -y \
  && apt-get install language-pack-ru -y \
- && update-locale LANG=ru_RU.UTF-8
+ && update-locale LANG=ru_RU.UTF-8 \
+ && export MAVEN_OPTS=" -Duser.language=ru -Duser.region=RU -Dfile.encoding=UTF-8"
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
