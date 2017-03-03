@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  runner:
+    restart: always
+    image: elkemper/maven-ci-runner:latest
+    volumes:
+    - /srv/docker/gitlab-runner:/home/gitlab_ci_multi_runner/data
+    environment:
+    - CI_SERVER_URL= 
+    - RUNNER_TOKEN= 
+    - RUNNER_DESCRIPTION= 
+    - RUNNER_EXECUTOR=shell
+    links:
+    - selenium
+
+  selenium:
+    restart: always
+    image: selenium/standalone-chrome:latest
+    dns: 
+    - 8.8.8.8
