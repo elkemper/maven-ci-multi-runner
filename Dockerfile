@@ -8,8 +8,9 @@ ENV GITLAB_CI_MULTI_RUNNER_DATA_DIR="${GITLAB_CI_MULTI_RUNNER_HOME_DIR}/data"
 
 RUN apt-get update \
  && apt-get upgrade -y \ 
- && apt-get install wget sudo -y \
- && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E1DD270288B4E6030699E45FA1715D88E1DF1F24 \
+ && apt-get install wget sudo -y 
+ 
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E1DD270288B4E6030699E45FA1715D88E1DF1F24 \
  && echo "deb http://ppa.launchpad.net/git-core/ppa/ubuntu trusty main" >> /etc/apt/sources.list \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -22,11 +23,15 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
- && apt-get upgrade -y \ 
- && apt-get install openjdk-8-jdk maven -y \
- && apt-get install language-pack-ru -y \
+ && apt-get upgrade -y  
+
+RUN apt-get install openjdk-8-jdk maven -y 
+
+RUN apt-get install language-pack-ru -y \
  && update-locale LANG=ru_RU.UTF-8 \
- && export MAVEN_OPTS=" -Duser.language=ru -Duser.region=RU -Dfile.encoding=UTF-8"
+ && mvn --version \
+ && export MAVEN_OPTS=" -Duser.language=ru -Duser.region=RU -Dfile.encoding=UTF-8" \
+ && mvn --version 
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
