@@ -3,7 +3,7 @@ version: '2'
 services:
   runner:
     restart: always
-    image: elkemper/maven-ci-runner:latest
+    image: elkemper/maven-ci-runner:0.8
     volumes:
     - /srv/docker/gitlab-runner:/home/gitlab_ci_multi_runner/data
     environment:
