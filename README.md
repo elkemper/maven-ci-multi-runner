@@ -1,37 +1,27 @@
-## Welcome to GitHub Pages
+# Gitlab CI Mutlirunner with Maven
 
-You can use the [editor on GitHub](https://github.com/elkemper/maven-ci-multi-runner/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+### [Link on Docker-Hub](https://hub.docker.com/r/elkemper/maven-ci-runner/)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Last pushed version: 0.8
+- Based on ubuntu 16.04
+- Gitalb-CI-Multirunner 1.4.1
+- Maven 3.3.9
+- Openjdk8
 
-### Markdown
+## How to use this image
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Using Composer 
+Download docker-compose.yml into any directory, enter your gitlab-ci URL, and project token (from Settings-Runners).
+Delete selenium service, and link on it, if you don't need it. And after just run 
+`sudo docker-compose up`
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+### Without Composer
 ```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/elkemper/maven-ci-multi-runner/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+$ sudo docker pull elkemper/maven-ci-runner
+$ sudo docker run -d -e CI_SERVER_URL=#{your gitlab-ci URL} \
+      -e RUNNER_TOKEN=#{gitlab's project token} \
+      -e RUNNER_DESCRIPTION=#{name for runner} \
+      -e RUNNER_EXECUTOR=shell \
+      -v  /srv/docker/gitlab-runner:/home/gitlab_ci_multi_runner/data \
+      elkemper/maven-ci-runner
+```
