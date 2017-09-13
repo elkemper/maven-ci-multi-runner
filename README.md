@@ -2,9 +2,9 @@
 
 ### [Link on Docker-Hub](https://hub.docker.com/r/elkemper/maven-ci-runner/)
 
-### Last pushed version: 0.8
+### Last pushed version: 1.9.5.0
 - Based on ubuntu 16.04
-- Gitalb-CI-Multirunner 1.4.1
+- Gitalb-CI-Multirunner 9.5.0
 - Maven 3.3.9
 - Openjdk8
 
