@@ -49,12 +49,10 @@ grant_access_to_docker_socket() {
 
 configure_ci_runner() {
   if [[ ! -e ${GITLAB_CI_MULTI_RUNNER_DATA_DIR}/config.toml ]]; then
-    if [[ -n ${CI_SERVER_URL} && -n ${RUNNER_TOKEN} && -n ${RUNNER_DESCRIPTION} && -n ${RUNNER_EXECUTOR} \
-           && -n ${RUNNER_TAGS} && -n ${RUN_UNTAGGED} && -n ${RUNNER_LOCK}]]; then
+    if [[ -n ${CI_SERVER_URL} && -n ${RUNNER_TOKEN} && -n ${RUNNER_DESCRIPTION} && -n ${RUNNER_EXECUTOR} ]]; then
       sudo -HEu ${GITLAB_CI_MULTI_RUNNER_USER} \
         gitlab-ci-multi-runner register --config ${GITLAB_CI_MULTI_RUNNER_DATA_DIR}/config.toml \
-          -n -u "${CI_SERVER_URL}" -r "${RUNNER_TOKEN}" --name "${RUNNER_DESCRIPTION}" --executor "${RUNNER_EXECUTOR}" \
-          --tag-list "${RUNNER_TAGS}" --run-untagged "${RUN_UNTAGGED}" --locked "${RUNNER_LOCK}"
+          -n -u "${CI_SERVER_URL}" -r "${RUNNER_TOKEN}" --name "${RUNNER_DESCRIPTION}" --executor "${RUNNER_EXECUTOR}"
     else
       sudo -HEu ${GITLAB_CI_MULTI_RUNNER_USER} \
         gitlab-ci-multi-runner register --config ${GITLAB_CI_MULTI_RUNNER_DATA_DIR}/config.toml

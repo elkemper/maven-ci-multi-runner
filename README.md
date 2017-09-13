@@ -22,9 +22,6 @@ $ sudo docker run -d -e CI_SERVER_URL=#{your gitlab-ci URL} \
       -e RUNNER_TOKEN=#{gitlab's project token} \
       -e RUNNER_DESCRIPTION=#{name for runner} \
       -e RUNNER_EXECUTOR=shell \
-      -e RUNNER_TAGS=tag1 \
-      -e RUN_UNTAGGED=false \
-      -e RUNNER_LOCK=false \
       -v  /srv/docker/gitlab-runner:/home/gitlab_ci_multi_runner/data \
       elkemper/maven-ci-runner
 ```
