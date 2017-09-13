@@ -11,6 +11,9 @@ services:
     - RUNNER_TOKEN= 
     - RUNNER_DESCRIPTION= 
     - RUNNER_EXECUTOR=shell
+    - RUNNER_TAGS=tag1 
+    - RUN_UNTAGGED=false 
+    - RUNNER_LOCK=false
     links:
     - selenium
 
